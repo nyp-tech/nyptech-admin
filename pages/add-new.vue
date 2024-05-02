@@ -95,7 +95,7 @@ useSeoMeta({
 
       <div>
         <label for="UserEmail" class="block text-xs font-medium text-gray-700">
-          Language
+          Description
         </label>
 
         <input
@@ -110,7 +110,7 @@ useSeoMeta({
 
       <div>
         <label for="UserEmail" class="block text-xs font-medium text-gray-700">
-          Github
+          Link
         </label>
 
         <input
@@ -125,7 +125,7 @@ useSeoMeta({
 
       <div>
         <label for="UserEmail" class="block text-xs font-medium text-gray-700">
-          Stars count
+          Vote
         </label>
 
         <input

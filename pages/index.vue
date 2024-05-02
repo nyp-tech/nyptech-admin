@@ -5,7 +5,7 @@ const {
 } = data.value;
 
 const formatNumber = (val) =>
-  new Intl.NumberFormat("en-US", { maximumSignificantDigits: 3 }).format(val);
+  new Intl.NumberFormat("en-US").format(val);
 </script>
 
 <template>
@@ -28,17 +28,17 @@ const formatNumber = (val) =>
           <th
             class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
           >
-            Language
+            Description
           </th>
           <th
             class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
           >
-            GitHub Stars
+            Votes
           </th>
           <th
             class="whitespace-nowrap px-4 py-2 text-left font-medium text-gray-900"
           >
-            Repo
+            Link
           </th>
         </tr>
       </thead>
