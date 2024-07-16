@@ -1,4 +1,3 @@
-import NavigationBar from "@/components/navigation-bar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -9,11 +8,7 @@ export const metadata: Metadata = {
   title: "NYP Technopreneurship Club",
 };
 
-export default function Layout(
-  props: Readonly<{
-    children: React.ReactNode;
-  }>
-) {
+export default function Layout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -43,12 +38,7 @@ export default function Layout(
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className={inter.className}>
-        <div className={"h-dvh grid grid-rows-[auto_1fr]"}>
-          <NavigationBar />
-          {props.children}
-        </div>
-      </body>
+      <body className={inter.className}>{props.children}</body>
     </html>
   );
 }
