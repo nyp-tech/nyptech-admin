@@ -24,9 +24,17 @@ export default function Layout(props: { children: React.ReactNode }) {
               </label>
             </div>
             <div className={"navbar-end"}>
-              <details className={"dropdown dropdown-end"}>
-                <summary className={"btn btn-circle btn-ghost"}>
-                  <i className={"fa-solid fa-bell fa-xl"} />
+              <Link
+                className={"mx-1 btn btn-circle btn-ghost"}
+                href={"/admin/notifications"}
+              >
+                <i className={"fa-solid fa-bell fa-xl"} />
+              </Link>
+              <details className={"mx-1 dropdown dropdown-end"}>
+                <summary className={"avatar"}>
+                  <div className={"w-10 rounded-full cursor-pointer"}>
+                    <img src={"/assets/logo.png"} alt={"Avatar"} />
+                  </div>
                 </summary>
                 <ul
                   className={
@@ -34,11 +42,17 @@ export default function Layout(props: { children: React.ReactNode }) {
                   }
                 >
                   <li>
-                    <Link href={"/admin/notifications"}>Notifications</Link>
+                    <Link href={"/admin/account"}>
+                      <i className={"fa-solid fa-gear"} />
+                      Settings
+                    </Link>
                   </li>
                   <div className={"my-0 divider"} />
                   <li>
-                    <Link href={"/logout"}>Logout</Link>
+                    <Link href={"/logout"}>
+                      <i className={"fa-solid fa-sign-out"} />
+                      Logout
+                    </Link>
                   </li>
                 </ul>
               </details>
@@ -58,9 +72,22 @@ export default function Layout(props: { children: React.ReactNode }) {
           </li>
           <li>
             <Link href={"/admin/dashboard"}>
-              <i className={"fa-solid fa-home"} />
+              <i className={"fa-solid fa-bolt"} />
               Dashboard
             </Link>
+          </li>
+          <li>
+            <details open>
+              <summary>
+                <i className={"fa-solid fa-server"} />
+                Microservices
+              </summary>
+              <ul>
+                <li>
+                  <Link href={"/admin/microservices/go"}>Go Microservice</Link>
+                </li>
+              </ul>
+            </details>
           </li>
         </ul>
       </div>
