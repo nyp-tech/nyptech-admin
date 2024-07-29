@@ -17,6 +17,7 @@ export function setRedirect(
       Authorization: `Bearer ${bearerKey}`,
     },
     body: JSON.stringify(data),
+    redirect: "follow",
   });
 }
 

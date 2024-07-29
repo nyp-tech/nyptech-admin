@@ -1,6 +1,8 @@
 import { getAllRedirects } from "@/app/admin/microservices/go/utils";
 import Link from "next/link";
 
+export const revalidate = 0;
+
 export default async function Page() {
   const redirects = await getAllRedirects();
 
@@ -8,6 +10,12 @@ export default async function Page() {
     <main className={"py-4"}>
       <div className={"mx-auto w-[90%] flex flex-col gap-4"}>
         <ul className={"flex flex-col gap-2"}>
+          <li>
+            <Link className={"w-full btn"} href={"/admin/microservices/go/add"}>
+              <i className={"fa-solid fa-plus"} />
+              Add
+            </Link>
+          </li>
           {redirects.map((redirect) => (
             <li
               key={redirect.id}
