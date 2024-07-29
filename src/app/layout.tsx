@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "NYP Technopreneurship Club",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Layout(props: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang={"en"}>
       <head>
         <link
           rel="apple-touch-icon"
@@ -38,7 +39,7 @@ export default function Layout(props: { children: React.ReactNode }) {
           referrerPolicy="no-referrer"
         />
       </head>
-      <body className={inter.className}>{props.children}</body>
+      <body className={clsx(font.className, "h-dvh")}>{props.children}</body>
     </html>
   );
 }

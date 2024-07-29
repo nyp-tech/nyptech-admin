@@ -22,5 +22,3 @@ next-env.d.ts
 .DS_Store
 Desktop.ini
 Thumbs.db
-.env.*
-.env

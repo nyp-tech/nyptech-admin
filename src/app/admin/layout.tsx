@@ -8,7 +8,7 @@ export default function Layout(props: { children: React.ReactNode }) {
         className={"drawer-toggle"}
         type={"checkbox"}
       />
-      <div className={"h-dvh drawer-content"}>
+      <div className={"h-full drawer-content"}>
         <div
           className={
             "h-full grid grid-rows-[auto,1fr] [&>main]:overflow-y-auto"
@@ -63,11 +63,11 @@ export default function Layout(props: { children: React.ReactNode }) {
       </div>
       <div className={"drawer-side"}>
         <label className={"drawer-overlay"} htmlFor={"drawer-toggle"} />
-        <ul className={"min-h-full w-80 menu bg-base-300"}>
+        <ul className={"min-h-full w-56 menu bg-base-300"}>
           <li className={"mb-2"}>
             <Link className={"text-xl"} href={"/admin"}>
               <img className={"w-10"} src={"/assets/logo.png"} alt={"Logo"} />
-              NYP TES Club
+              Welcome
             </Link>
           </li>
           <li>
