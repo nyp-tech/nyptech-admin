@@ -26,8 +26,8 @@ export default function AppContainer(props: { children: React.ReactNode }) {
         <label className={"drawer-overlay"} htmlFor={"drawer-state"} />
         <div className={"h-full bg-base-300"}>
           <nav className={"navbar"}>
-            <Link className={"w-full btn btn-ghost"} href={"/"}>
-              Home
+            <Link className={"max-lg:w-full btn btn-ghost"} href={"/"}>
+              <img className={"size-8"} src={"https://nyptech.vercel.app/assets?id=logo"} />
             </Link>
           </nav>
           <ul className={"w-56 menu"}>

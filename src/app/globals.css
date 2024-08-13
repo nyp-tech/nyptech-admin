@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 html {
-    overflow: hidden;
-    scrollbar-gutter: unset !important;
+  overflow: hidden;
+  scrollbar-gutter: unset !important;
 }
 
 body {
-    height: 100dvh;
+  height: 100dvh;
 }
 
 main {
-    height: 100%;
-    overflow: auto;
+  height: 100%;
+  overflow: auto;
 }
