@@ -1,12 +1,18 @@
-export default function Page() {
-    return (
-      <main className={"grid place-items-center"}>
-        <div className={"card bg-base-300"}>
-          <div className={"card-body items-center"}>
-            <h2 className={"card-title"}>Go Microservice</h2>
-            <p>This page is currently work-in-progress!</p>
-          </div>
-        </div>
-      </main>
-    );
-  }
+import { getRedirects } from "@/lib/api-go";
+import Link from "next/link";
+
+export default async function Page() {
+  const redirects = await getRedirects();
+  return (
+    <main className={"p-4 flex flex-col gap-2"}>
+      <Link className={"btn btn-primary"} href={"/microservices/go/add"}>
+        Add Link
+      </Link>
+      {redirects.map((redirect) => (
+        <Link key={redirect.id} className={"btn"} href={`/microservices/go/${redirect.id}`}>
+          {redirect.id}
+        </Link>
+      ))}
+    </main>
+  );
+}
