@@ -9,19 +9,22 @@ export type Redirect = RedirectRecord & {
 
 const API_KEY = "tesclub2024";
 
-export function setRedirect(redirect: Redirect) {
-  return fetch(`https://nyptech-go.vercel.app/api/set?id=${redirect.id}`, {
+export function setRedirect(id: string, record: RedirectRecord) {
+  return fetch(`https://nyptech-go.vercel.app/api/manage/${id}`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${API_KEY}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ url: redirect.url, description: redirect.description }),
-  }).then((res) => res.ok);
+    body: JSON.stringify(record),
+  }).then((res) => {
+    console.log(res);
+    return res.ok;
+  });
 }
 
 export function getRedirect(id: string) {
-  return fetch(`https://nyptech-go.vercel.app/api/get?id=${id}`, {
+  return fetch(`https://nyptech-go.vercel.app/api/manage/${id}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${API_KEY}`,
@@ -32,7 +35,7 @@ export function getRedirect(id: string) {
 }
 
 export function getRedirects() {
-  return fetch("https://nyptech-go.vercel.app/api/get-all", {
+  return fetch("https://nyptech-go.vercel.app/api/all", {
     method: "GET",
     headers: {
       Authorization: `Bearer ${API_KEY}`,
@@ -43,7 +46,7 @@ export function getRedirects() {
 }
 
 export function deleteRedirect(id: string) {
-  return fetch(`https://nyptech-go.vercel.app/api/delete?id=${id}`, {
+  return fetch(`https://nyptech-go.vercel.app/api/delete/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${API_KEY}`,

@@ -1,3 +1,4 @@
+import NotFound from "@/app/not-found";
 import { deleteRedirect, getRedirect, setRedirect } from "@/lib/api-go";
 import { redirect } from "next/navigation";
 
@@ -5,7 +6,7 @@ export default async function Page(props: { params: { id: string } }) {
   const id = props.params.id;
 
   if (!id) {
-    return <></>;
+    return <NotFound />;
   }
 
   const handleEdit = async (data: FormData) => {
@@ -18,8 +19,7 @@ export default async function Page(props: { params: { id: string } }) {
       return;
     }
 
-    const success = await setRedirect({
-      id,
+    const success = await setRedirect(id, {
       url,
       description: "",
     });
