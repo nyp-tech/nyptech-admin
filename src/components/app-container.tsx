@@ -47,11 +47,11 @@ export default function AppContainer(props: { children: React.ReactNode }) {
               <details>
                 <summary>
                   <i className={"fa-solid fa-server"} />
-                  Microservices
+                  Services
                 </summary>
                 <ul>
                   <li>
-                    <Link href={"/microservices/go"}>Go Microservice</Link>
+                    <Link href={"/services/go"}>Go Microservice</Link>
                   </li>
                 </ul>
               </details>

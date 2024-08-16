@@ -11,7 +11,7 @@ export default async function Page(props: { params: { id: string } }) {
       description: "", // TODO
     });
     if (success) {
-      redirect("/microservices/go");
+      redirect("/services/go");
     } else {
       redirect("/error");
     }
@@ -21,7 +21,7 @@ export default async function Page(props: { params: { id: string } }) {
     <main className={"grid place-items-center"}>
       <div className={"card bg-base-300"}>
         <form className={"card-body"}>
-          <h2 className={"card-title self-center"}>Edit Redirect</h2>
+          <h2 className={"card-title self-center"}>Add Link</h2>
           <div className={"my-2 flex flex-col gap-2"}>
             <input className={"input"} type={"text"} name={"id"} required={true} placeholder={"ID"} />
             <input className={"input"} type={"url"} name={"url"} required={true} placeholder={"URL"} />
