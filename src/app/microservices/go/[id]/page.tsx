@@ -2,6 +2,8 @@ import NotFound from "@/app/not-found";
 import { deleteLink, getLink, setLink } from "@/lib/api/go";
 import { redirect } from "next/navigation";
 
+export const revalidate = 0;
+
 export default async function Page(props: { params: { id: string } }) {
   const id = props.params.id;
   const record = await getLink(id);
