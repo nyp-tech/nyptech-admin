@@ -1,16 +1,18 @@
-import { getRedirects } from "@/lib/api-go";
+import { getLinks } from "@/lib/api/go";
 import Link from "next/link";
 
+export const revalidate = 0;
+
 export default async function Page() {
-  const redirects = await getRedirects();
+  const links = await getLinks();
   return (
     <main className={"p-4 flex flex-col gap-2"}>
       <Link className={"btn btn-primary"} href={"/microservices/go/add"}>
         Add Link
       </Link>
-      {redirects.map((redirect) => (
-        <Link key={redirect.id} className={"btn"} href={`/microservices/go/${redirect.id}`}>
-          {redirect.id}
+      {links.map((link) => (
+        <Link key={link.id} className={"btn"} href={`/microservices/go/${link.id}`}>
+          {link.id}
         </Link>
       ))}
     </main>

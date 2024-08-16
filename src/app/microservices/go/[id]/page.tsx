@@ -1,29 +1,22 @@
 import NotFound from "@/app/not-found";
-import { deleteRedirect, getRedirect, setRedirect } from "@/lib/api-go";
+import { deleteLink, getLink, setLink } from "@/lib/api/go";
 import { redirect } from "next/navigation";
 
 export default async function Page(props: { params: { id: string } }) {
   const id = props.params.id;
+  const record = await getLink(id);
 
-  if (!id) {
+  if (!record) {
     return <NotFound />;
   }
 
-  const handleEdit = async (data: FormData) => {
+  const handleSave = async (data: FormData) => {
     "use server";
-
-    const id = data.get("id") as string;
     const url = data.get("url") as string;
-
-    if (!id || !url || id === "add") {
-      return;
-    }
-
-    const success = await setRedirect(id, {
+    const success = await setLink(id, {
       url,
-      description: "",
+      description: "", // TODO
     });
-
     if (success) {
       redirect("/microservices/go");
     } else {
@@ -31,61 +24,47 @@ export default async function Page(props: { params: { id: string } }) {
     }
   };
 
-  const handleDelete = async (data: FormData) => {
+  const handleDelete = async () => {
     "use server";
-
-    const id = data.get("id") as string;
-
-    if (!id) {
-      return;
-    }
-
-    const success = await deleteRedirect(id);
-
+    const success = await deleteLink(id);
     if (success) {
       redirect("/microservices/go");
     } else {
       redirect("/error");
     }
   };
-
-  const isNew = id === "add";
-  const redirectId = isNew ? "" : id;
-  const redirectUrl = isNew ? "" : (await getRedirect(id)).url;
 
   return (
     <main className={"grid place-items-center"}>
       <div className={"card bg-base-300"}>
         <form className={"card-body"}>
-          <h2 className={"card-title self-center"}>Manage Redirect</h2>
-          <div className={"my-2 space-y-2"}>
+          <h2 className={"card-title self-center"}>Edit Redirect</h2>
+          <div className={"my-2 flex flex-col gap-2"}>
             <input
-              className={"block input"}
+              className={"input"}
               type={"text"}
               name={"id"}
               required={true}
+              readOnly={true}
               placeholder={"ID"}
-              defaultValue={redirectId}
-              readOnly={!isNew}
+              defaultValue={record.id}
             />
             <input
-              className={"block input"}
+              className={"input"}
               type={"url"}
               name={"url"}
               required={true}
               placeholder={"URL"}
-              defaultValue={redirectUrl}
+              defaultValue={record.url}
             />
           </div>
           <div className={"card-actions justify-end"}>
-            <button className={"btn btn-sm btn-info"} formAction={handleEdit}>
-              {isNew ? "Add" : "Save"}
+            <button className={"btn btn-sm btn-primary"} formAction={handleSave}>
+              Save
             </button>
-            {isNew || (
-              <button className={"btn btn-sm btn-error"} formAction={handleDelete}>
-                Delete
-              </button>
-            )}
+            <button className={"btn btn-sm btn-error"} formAction={handleDelete}>
+              Delete
+            </button>
           </div>
         </form>
       </div>

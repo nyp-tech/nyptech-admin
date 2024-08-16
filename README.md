@@ -1,6 +1,6 @@
 # NYP Technopreneurship Club
 
-This repository contains the microservice for adminstrating the services by the club.
+This repository contains the central hub for administrating the services operated by the club.
 
 ## Usage
 
