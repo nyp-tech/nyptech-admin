@@ -4,7 +4,7 @@ export default function Page() {
       <div className={"card bg-base-300"}>
         <div className={"card-body items-center"}>
           <h2 className={"card-title"}>Dashboard</h2>
-          <p>This page is currently work-in-progress!</p>
+          <p>Hold on! We&apos;re still cooking!</p>
         </div>
       </div>
     </main>

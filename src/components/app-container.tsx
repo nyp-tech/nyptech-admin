@@ -26,14 +26,14 @@ export default function AppContainer(props: { children: React.ReactNode }) {
         <label className={"drawer-overlay"} htmlFor={"drawer-state"} />
         <div className={"h-full bg-base-300"}>
           <nav className={"navbar"}>
-            <Link className={"max-lg:w-full btn btn-ghost"} href={"/"}>
-              <img className={"size-8"} src={"https://nyptech.vercel.app/assets?id=logo"} />
+            <Link className={"max-lg:w-full btn btn-ghost"} href={"https://nyptech.vercel.app"}>
+              <img className={"size-8"} src={"https://nyptech.vercel.app/assets?id=logo"} alt={"Logo"} />
             </Link>
           </nav>
           <ul className={"w-56 menu"}>
             <li>
               <Link href={"/"}>
-                <i className={"fa-solid fa-house"} />
+                <i className={"fa-solid fa-gauge"} />
                 Dashboard
               </Link>
             </li>
@@ -51,7 +51,12 @@ export default function AppContainer(props: { children: React.ReactNode }) {
                 </summary>
                 <ul>
                   <li>
-                    <Link href={"/services/go"}>Go Microservice</Link>
+                    <Link href={"/services/go"}>Go Service</Link>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <Link href={"/services/learn"}>Learn Service</Link>
                   </li>
                 </ul>
               </details>
