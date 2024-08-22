@@ -23,3 +23,15 @@ export function getEvents() {
       return [] as Event[];
     });
 }
+
+export function getEvent(id: string) {
+  return fetch(`${apiUrl}/events?id=${id}`, {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .then((data) => data as Event)
+    .catch((err) => {
+      console.error(err);
+      return undefined;
+    });
+}
