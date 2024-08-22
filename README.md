@@ -2,7 +2,7 @@
 
 This repository contains the central hub for administrating the services operated by the club.
 
-## Usage
+## Contributing
 
 ### Prerequisities
 
@@ -12,7 +12,7 @@ This repository contains the central hub for administrating the services operate
 ### Instructions
 
 1. Clone this repository: `git clone https://github.com/nyp-tech/nyptech-admin.git`
-2. Copy the file `.env.template` as `.env.local`, and input the required secrets.
+2. Copy the file `.env.template` as `.env`, and input the required secrets.
 3. Install dependencies: `pnpm install`
 4. Run the server: `pnpm run dev`
 

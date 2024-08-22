@@ -48,6 +48,7 @@ export default async function Page(props: { params: { id: string } }) {
               type={"text"}
               name={"title"}
               required={true}
+              readOnly={true}
               placeholder={"Title"}
               defaultValue={record.title}
             />
@@ -55,6 +56,7 @@ export default async function Page(props: { params: { id: string } }) {
               className={"textarea"}
               name={"description"}
               required={true}
+              readOnly={true}
               placeholder={"Description"}
               defaultValue={record.description}
             />
@@ -63,6 +65,7 @@ export default async function Page(props: { params: { id: string } }) {
               type={"text"}
               name={"location"}
               required={true}
+              readOnly={true}
               placeholder={"Location"}
               defaultValue={record.location}
             />
@@ -71,14 +74,15 @@ export default async function Page(props: { params: { id: string } }) {
               type={"url"}
               name={"url"}
               required={true}
+              readOnly={true}
               placeholder={"Signup URL"}
               defaultValue={record.signup}
             />
           </div>
           <div className={"card-actions justify-end"}>
-            <button className={"btn btn-sm btn-primary"} formAction={handleSave}>
+            {/* <button className={"btn btn-sm btn-primary"} formAction={handleSave}>
               Save
-            </button>
+            </button> */}
             <button className={"btn btn-sm btn-error"} formAction={handleDelete}>
               Delete
             </button>
