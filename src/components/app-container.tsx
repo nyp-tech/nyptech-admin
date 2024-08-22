@@ -42,6 +42,12 @@ export default function AppContainer(props: { children: React.ReactNode }) {
               </Link>
             </li>
             <li>
+              <Link href={"/keys"}>
+                <i className={"fa-solid fa-key"} />
+                Keys
+              </Link>
+            </li>
+            <li>
               <details open>
                 <summary>
                   <i className={"fa-solid fa-server"} />

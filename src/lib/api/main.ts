@@ -12,15 +12,16 @@ type Event = {
 
 const apiUrl = "https://nyptech.vercel.app/api";
 
-export function getEvents() {
+export function createEvent(data: Omit<Event, "id">) {
   return fetch(`${apiUrl}/events`, {
-    method: "GET",
+    method: "POST",
+    body: JSON.stringify(data),
   })
     .then((res) => res.json())
-    .then((data) => data as Event[])
+    .then((data) => data as Event)
     .catch((err) => {
       console.error(err);
-      return [] as Event[];
+      return undefined;
     });
 }
 
@@ -33,5 +34,31 @@ export function getEvent(id: string) {
     .catch((err) => {
       console.error(err);
       return undefined;
+    });
+}
+
+export function getEvents() {
+  return fetch(`${apiUrl}/events`, {
+    method: "GET",
+  })
+    .then((res) => res.json())
+    .then((data) => data as Event[])
+    .catch((err) => {
+      console.error(err);
+      return [] as Event[];
+    });
+}
+
+export function deleteEvent(id: string) {
+  return fetch(`${apiUrl}/events`, {
+    method: "DELETE",
+    body: JSON.stringify({ id }),
+  })
+    .then(() => {
+      return true;
+    })
+    .catch((err) => {
+      console.error(err);
+      return false;
     });
 }

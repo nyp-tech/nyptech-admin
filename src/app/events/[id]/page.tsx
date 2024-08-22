@@ -1,5 +1,6 @@
 import NotFound from "@/app/not-found";
-import { getEvent } from "@/lib/api/main";
+import FormControl from "@/components/ui/form-control";
+import { deleteEvent, getEvent } from "@/lib/api/main";
 import { redirect } from "next/navigation";
 
 export const revalidate = 0;
@@ -12,77 +13,88 @@ export default async function Page(props: { params: { id: string } }) {
     return <NotFound />;
   }
 
-  const handleSave = async (data: FormData) => {
-    "use server";
-
-    // TODO
-
-    redirect("/events");
-  };
-
   const handleDelete = async () => {
     "use server";
-
-    // TODO
-
-    redirect("/events");
+    const success = await deleteEvent(record.id);
+    if (success) {
+      redirect("/events");
+    } else {
+      redirect("/error");
+    }
   };
 
   return (
-    <main className={"grid place-items-center"}>
+    <main className={"p-4 grid place-items-center"}>
       <div className={"w-[90%] sm:w-[70%] lg:w-[50%] card bg-base-300"}>
         <form className={"card-body"}>
           <h2 className={"card-title self-center"}>Edit Event</h2>
           <div className={"my-2 flex flex-col gap-2"}>
-            <input
-              className={"input"}
+            <FormControl
               type={"text"}
               name={"id"}
+              label={"ID"}
               required={true}
               readOnly={true}
-              placeholder={"ID"}
               defaultValue={record.id}
             />
-            <input
-              className={"input"}
+            <FormControl
               type={"text"}
               name={"title"}
+              label={"Title"}
               required={true}
               readOnly={true}
-              placeholder={"Title"}
               defaultValue={record.title}
             />
-            <textarea
-              className={"textarea"}
+            <FormControl
+              type={"textarea"}
               name={"description"}
+              label={"Description"}
               required={true}
               readOnly={true}
-              placeholder={"Description"}
               defaultValue={record.description}
             />
-            <input
-              className={"input"}
+            <FormControl
               type={"text"}
               name={"location"}
+              label={"Location"}
               required={true}
               readOnly={true}
-              placeholder={"Location"}
               defaultValue={record.location}
             />
-            <input
-              className={"input"}
-              type={"url"}
-              name={"url"}
+            <FormControl
+              type={"text"}
+              name={"organizer"}
+              label={"Club Organizer"}
               required={true}
               readOnly={true}
-              placeholder={"Signup URL"}
+              defaultValue={record.location}
+            />
+            <FormControl
+              type={"url"}
+              name={"signupUrl"}
+              label={"Signup URL"}
+              required={true}
+              readOnly={true}
               defaultValue={record.signup}
+            />
+            <FormControl
+              type={"url"}
+              name={"publicityUrl"}
+              label={"Publicity URL"}
+              required={true}
+              readOnly={true}
+              defaultValue={record.img}
+            />
+            <FormControl
+              type={"date"}
+              name={"date"}
+              label={"Date of Event"}
+              required={true}
+              readOnly={true}
+              defaultValue={record.date.toString()}
             />
           </div>
           <div className={"card-actions justify-end"}>
-            {/* <button className={"btn btn-sm btn-primary"} formAction={handleSave}>
-              Save
-            </button> */}
             <button className={"btn btn-sm btn-error"} formAction={handleDelete}>
               Delete
             </button>
