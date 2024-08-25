@@ -1,6 +1,6 @@
 import NotFound from "@/app/not-found";
 import FormControl from "@/components/ui/form-control";
-import { deleteEvent, getEvent } from "@/lib/api/main";
+import { deleteEvent, getEvent } from "@/lib/api/events";
 import { redirect } from "next/navigation";
 
 export const revalidate = 0;

@@ -1,5 +1,5 @@
 import FormControl from "@/components/ui/form-control";
-import { createEvent } from "@/lib/api/main";
+import { createEvent } from "@/lib/api/events";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 

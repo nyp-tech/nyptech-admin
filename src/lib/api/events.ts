@@ -10,7 +10,7 @@ type Event = {
   userId: string;
 };
 
-const apiUrl = "https://nyptech.vercel.app/api";
+const apiUrl = "https://nyptech-api.vercel.app/v1";
 
 export function createEvent(data: Omit<Event, "id">) {
   return fetch(`${apiUrl}/events`, {

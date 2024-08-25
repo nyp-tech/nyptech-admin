@@ -1,4 +1,4 @@
-import { getEvents } from "@/lib/api/main";
+import { getEvents } from "@/lib/api/events";
 import Link from "next/link";
 
 export const revalidate = 0;
