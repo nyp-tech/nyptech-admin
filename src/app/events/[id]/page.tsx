@@ -21,7 +21,7 @@ export default function Page(props: { params: { id: string } }) {
       if (!event) return;
       console.log(event);
       setEvent(event);
-      setDate(new Date(event.date.toString()).toISOString().split("T")[0]);
+      setDate(event.date.toISOString().split("T")[0]);
       setPublicityUrl(event.publicityUrl);
       setIsLoading(false);
     });

@@ -1,26 +1,18 @@
-// type Event = {
-//   id: string;
-//   title: string;
-//   description: string;
-//   signup: string;
-//   location: string;
-//   club: string;
-//   img: string;
-//   date: Date;
-//   userId: string;
-// };
-
-export type Event = {
-  id: string;
-  title: string;
-  description: string;
-  organizer: string;
-  url: string;
-  publicityUrl: string;
-  date: Date;
-};
+import { z } from "zod";
 
 const apiUrl = "https://nyptech-api.vercel.app/v2";
+
+export const eventSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  description: z.string(),
+  organizer: z.string(),
+  date: z.coerce.date(),
+  url: z.string(),
+  publicityUrl: z.string(),
+});
+
+export type Event = z.infer<typeof eventSchema>;
 
 export function createEvent(data: Omit<Event, "id">) {
   return fetch(`${apiUrl}/events`, {
@@ -28,7 +20,7 @@ export function createEvent(data: Omit<Event, "id">) {
     body: JSON.stringify(data),
   })
     .then((res) => res.json())
-    .then((data) => data as Event)
+    .then((data) => eventSchema.parse(data) as Event)
     .catch((err) => {
       console.error(err);
       return undefined;
@@ -40,7 +32,7 @@ export function getEvent(id: string) {
     method: "GET",
   })
     .then((res) => res.json())
-    .then((data) => data as Event)
+    .then((data) => eventSchema.parse(data) as Event)
     .catch((err) => {
       console.error(err);
       return undefined;
@@ -52,7 +44,7 @@ export function getEvents() {
     method: "GET",
   })
     .then((res) => res.json())
-    .then((data) => data as Event[])
+    .then((data) => data.map((event: any) => eventSchema.parse(event)) as Event[])
     .catch((err) => {
       console.error(err);
       return [] as Event[];
@@ -65,7 +57,7 @@ export function updateEvent(data: Event) {
     body: JSON.stringify(data),
   })
     .then((res) => res.json())
-    .then((data) => data as Event)
+    .then((data) => eventSchema.parse(data) as Event)
     .catch((err) => {
       console.error(err);
       return undefined;
