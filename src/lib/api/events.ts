@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const apiUrl = "https://nyptech-api.vercel.app/v2";
+const apiUrl = "https://nyptech-api.vercel.app/v1";
 
 export const eventSchema = z.object({
   id: z.string(),

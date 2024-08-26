@@ -1,25 +1,22 @@
 import { TES_GO_KEY } from "@/environment";
 
-export type RedirectRecord = {
+const apiKey = TES_GO_KEY;
+const apiUrl = "https://nyptech-api.vercel.app/v1";
+
+export type Redirect = {
+  id: string;
   url: string;
   description?: string;
 };
 
-export type Redirect = RedirectRecord & {
-  id: string;
-};
-
-const apiKey = TES_GO_KEY;
-const apiUrl = "https://nyptech-go.vercel.app/api";
-
-export function setLink(id: string, record: RedirectRecord) {
-  return fetch(`${apiUrl}/manage/${id}`, {
+export function setLink(data: Redirect) {
+  return fetch(`${apiUrl}/links`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(record),
+    body: JSON.stringify(data),
   })
     .then((res) => res.ok)
     .catch((err) => {
@@ -29,13 +26,16 @@ export function setLink(id: string, record: RedirectRecord) {
 }
 
 export function getLink(id: string) {
-  return fetch(`${apiUrl}/manage/${id}`, {
+  return fetch(`${apiUrl}/links?id=${id}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${apiKey}`,
     },
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
     .then((data) => data as Redirect)
     .catch((err) => {
       console.error(err);
@@ -44,13 +44,16 @@ export function getLink(id: string) {
 }
 
 export function getLinks() {
-  return fetch(`${apiUrl}/all`, {
+  return fetch(`${apiUrl}/links`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${apiKey}`,
     },
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
     .then((data) => data as Redirect[])
     .catch((err) => {
       console.error(err);
@@ -59,11 +62,12 @@ export function getLinks() {
 }
 
 export function deleteLink(id: string) {
-  return fetch(`${apiUrl}/manage/${id}`, {
+  return fetch(`${apiUrl}/links`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${apiKey}`,
     },
+    body: JSON.stringify({ id }),
   })
     .then((res) => res.ok)
     .catch((err) => {
