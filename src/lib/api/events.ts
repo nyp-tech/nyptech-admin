@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 const apiUrl = "https://nyptech-api.vercel.app/v1";
+// const apiUrl = "http://localhost:3001/v1";
 
 export const eventSchema = z.object({
   id: z.string(),
@@ -65,9 +66,8 @@ export function updateEvent(data: Event) {
 }
 
 export function deleteEvent(id: string) {
-  return fetch(`${apiUrl}/events`, {
+  return fetch(`${apiUrl}/events?id=${id}`, {
     method: "DELETE",
-    body: JSON.stringify({ id }),
   })
     .then(() => {
       return true;

@@ -2,6 +2,7 @@ import { TES_GO_KEY } from "@/environment";
 
 const apiKey = TES_GO_KEY;
 const apiUrl = "https://nyptech-api.vercel.app/v1";
+// const apiUrl = "http://localhost:3001/v1";
 
 export type Redirect = {
   id: string;
@@ -62,12 +63,11 @@ export function getLinks() {
 }
 
 export function deleteLink(id: string) {
-  return fetch(`${apiUrl}/links`, {
+  return fetch(`${apiUrl}/links?id=${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${apiKey}`,
     },
-    body: JSON.stringify({ id }),
   })
     .then((res) => res.ok)
     .catch((err) => {
