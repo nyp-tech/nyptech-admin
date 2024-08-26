@@ -1,5 +1,5 @@
 import NotFound from "@/app/not-found";
-import { deleteLink, getLink, setLink } from "@/lib/api/go";
+import { deleteLink, getLink, setLink } from "@/lib/api/links";
 import { redirect } from "next/navigation";
 
 export const revalidate = 0;
@@ -15,7 +15,8 @@ export default async function Page(props: { params: { id: string } }) {
   const handleSave = async (data: FormData) => {
     "use server";
     const url = data.get("url") as string;
-    const success = await setLink(id, {
+    const success = await setLink({
+      id,
       url,
       description: "", // TODO
     });

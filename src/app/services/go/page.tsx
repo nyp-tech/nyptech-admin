@@ -1,4 +1,4 @@
-import { getLinks } from "@/lib/api/go";
+import { getLinks } from "@/lib/api/links";
 import Link from "next/link";
 
 export const revalidate = 0;

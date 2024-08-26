@@ -1,12 +1,13 @@
-import { setLink } from "@/lib/api/go";
+import { setLink } from "@/lib/api/links";
 import { redirect } from "next/navigation";
 
-export default async function Page(props: { params: { id: string } }) {
+export default async function Page() {
   const handleSave = async (data: FormData) => {
     "use server";
     const id = data.get("id") as string;
     const url = data.get("url") as string;
-    const success = await setLink(id, {
+    const success = await setLink({
+      id,
       url,
       description: "", // TODO
     });
