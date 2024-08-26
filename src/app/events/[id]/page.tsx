@@ -55,35 +55,11 @@ export default async function Page(props: { params: { id: string } }) {
             />
             <FormControl
               type={"text"}
-              name={"location"}
-              label={"Location"}
-              required={true}
-              readOnly={true}
-              defaultValue={record.location}
-            />
-            <FormControl
-              type={"text"}
               name={"organizer"}
-              label={"Club Organizer"}
+              label={"Event Organizer"}
               required={true}
               readOnly={true}
-              defaultValue={record.location}
-            />
-            <FormControl
-              type={"url"}
-              name={"signupUrl"}
-              label={"Signup URL"}
-              required={true}
-              readOnly={true}
-              defaultValue={record.signup}
-            />
-            <FormControl
-              type={"url"}
-              name={"publicityUrl"}
-              label={"Publicity URL"}
-              required={true}
-              readOnly={true}
-              defaultValue={record.img}
+              defaultValue={record.organizer}
             />
             <FormControl
               type={"date"}
@@ -92,6 +68,22 @@ export default async function Page(props: { params: { id: string } }) {
               required={true}
               readOnly={true}
               defaultValue={record.date.toString()}
+            />
+            <FormControl
+              type={"url"}
+              name={"url"}
+              label={"URL"}
+              required={true}
+              readOnly={true}
+              defaultValue={record.url}
+            />
+            <FormControl
+              type={"url"}
+              name={"publicityUrl"}
+              label={"Publicity URL"}
+              required={true}
+              readOnly={true}
+              defaultValue={record.publicityUrl}
             />
           </div>
           <div className={"card-actions justify-end"}>

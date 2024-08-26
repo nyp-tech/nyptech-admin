@@ -1,16 +1,26 @@
+// type Event = {
+//   id: string;
+//   title: string;
+//   description: string;
+//   signup: string;
+//   location: string;
+//   club: string;
+//   img: string;
+//   date: Date;
+//   userId: string;
+// };
+
 type Event = {
   id: string;
   title: string;
   description: string;
-  signup: string;
-  location: string;
-  club: string;
-  img: string;
+  organizer: string;
+  url: string;
+  publicityUrl: string;
   date: Date;
-  userId: string;
-};
+}
 
-const apiUrl = "https://nyptech-api.vercel.app/v1";
+const apiUrl = "https://nyptech-api.vercel.app/v2";
 
 export function createEvent(data: Omit<Event, "id">) {
   return fetch(`${apiUrl}/events`, {
