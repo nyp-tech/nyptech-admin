@@ -10,7 +10,7 @@
 //   userId: string;
 // };
 
-type Event = {
+export type Event = {
   id: string;
   title: string;
   description: string;
@@ -18,7 +18,7 @@ type Event = {
   url: string;
   publicityUrl: string;
   date: Date;
-}
+};
 
 const apiUrl = "https://nyptech-api.vercel.app/v2";
 
@@ -56,6 +56,19 @@ export function getEvents() {
     .catch((err) => {
       console.error(err);
       return [] as Event[];
+    });
+}
+
+export function updateEvent(data: Event) {
+  return fetch(`${apiUrl}/events`, {
+    method: "PUT",
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((data) => data as Event)
+    .catch((err) => {
+      console.error(err);
+      return undefined;
     });
 }
 

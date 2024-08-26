@@ -29,24 +29,24 @@ export default function Page() {
                 readOnly
               />
               {publicityUrl ? (
-                <button
-                  className={"mt-4 btn btn-info"}
-                  onClick={() => {
-                    setPublicityUrl(undefined);
-                  }}
-                >
-                  Upload Again
-                </button>
+                <div className={"mt-4 flex justify-center"}>
+                  <button
+                    className={"btn btn-info"}
+                    onClick={() => {
+                      setPublicityUrl(undefined);
+                    }}
+                  >
+                    Upload Again
+                  </button>
+                </div>
               ) : (
                 <UploadButton
                   className={"mt-4"}
                   endpoint={"general"}
                   onClientUploadComplete={(res) => {
-                    console.log("Upload completed!", res);
                     setPublicityUrl(res[0].url);
                   }}
                   onUploadError={(err) => {
-                    console.error("Upload error!", err);
                     alert("Unable to upload! " + err.message);
                   }}
                 />
