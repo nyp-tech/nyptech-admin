@@ -4,8 +4,9 @@ import { deleteEventAction, updateEventAction } from "@/app/events/actions";
 import Loading from "@/app/loading";
 import NotFound from "@/app/not-found";
 import FormControl from "@/components/ui/form-control";
-import { UploadButton } from "@/components/uploadthing-buttons";
+import { MyUploadButton } from "@/components/uploadthing-buttons";
 import { getEvent, type Event } from "@/lib/api/events";
+import { humanizeDate } from "@/lib/utils";
 import { useEffect, useState } from "react";
 
 export default function Page(props: { params: { id: string } }) {
@@ -21,7 +22,7 @@ export default function Page(props: { params: { id: string } }) {
       if (!event) return;
       console.log(event);
       setEvent(event);
-      setDate(event.date.toISOString().split("T")[0]);
+      setDate(humanizeDate(event.date));
       setPublicityUrl(event.publicityUrl);
       setIsLoading(false);
     });
@@ -80,7 +81,7 @@ export default function Page(props: { params: { id: string } }) {
                 </button>
               </div>
             ) : (
-              <UploadButton
+              <MyUploadButton
                 className={"mt-4"}
                 endpoint={"general"}
                 onClientUploadComplete={(res) => {

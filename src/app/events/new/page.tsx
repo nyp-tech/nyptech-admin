@@ -2,7 +2,7 @@
 
 import { createEventAction } from "@/app/events/actions";
 import FormControl from "@/components/ui/form-control";
-import { UploadButton } from "@/components/uploadthing-buttons";
+import { MyUploadButton } from "@/components/uploadthing-buttons";
 import { useState } from "react";
 
 export default function Page() {
@@ -40,7 +40,7 @@ export default function Page() {
                   </button>
                 </div>
               ) : (
-                <UploadButton
+                <MyUploadButton
                   className={"mt-4"}
                   endpoint={"general"}
                   onClientUploadComplete={(res) => {
