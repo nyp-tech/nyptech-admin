@@ -2,6 +2,7 @@
 
 import { createEventAction } from "@/app/events/actions";
 import FormControl from "@/components/ui/form-control";
+import FormStatus from "@/components/ui/form-status";
 import { MyUploadButton } from "@/components/uploadthing-buttons";
 import { useState } from "react";
 
@@ -14,20 +15,25 @@ export default function Page() {
         <form className={"card-body"}>
           <h2 className={"card-title self-center"}>New Event</h2>
           <div className={"my-2 flex flex-col gap-2"}>
-            <FormControl type={"text"} name={"title"} label={"Title"} required />
-            <FormControl type={"textarea"} name={"description"} label={"Description"} required />
-            <FormControl type={"text"} name={"organizer"} label={"Event Organizer"} required />
-            <FormControl type={"date"} name={"date"} label={"Date of Event"} required />
-            <FormControl type={"url"} name={"url"} label={"URL"} required />
+            <FormControl label={"Title"}>
+              <input className={"input"} type={"text"} name={"title"} required />
+            </FormControl>
+            <FormControl label={"Description"}>
+              <input className={"input"} type={"textarea"} name={"description"} required />
+            </FormControl>
+            <FormControl label={"Event Organizer"}>
+              <input className={"input"} type={"text"} name={"organizer"} required />
+            </FormControl>
+            <FormControl label={"Date of Event"}>
+              <input className={"input"} type={"date"} name={"date"} required />
+            </FormControl>
+            <FormControl label={"URL"}>
+              <input className={"input"} type={"url"} name={"url"} required />
+            </FormControl>
             <div>
-              <FormControl
-                type={"url"}
-                name={"publicityUrl"}
-                label={"Publicity URL"}
-                value={publicityUrl}
-                required
-                readOnly
-              />
+              <FormControl label={"Publicity URL"}>
+                <input className={"input"} type={"url"} name={"publicityUrl"} value={publicityUrl} required readOnly />
+              </FormControl>
               {publicityUrl ? (
                 <div className={"mt-4 flex justify-center"}>
                   <button
@@ -54,9 +60,18 @@ export default function Page() {
             </div>
           </div>
           <div className={"card-actions justify-end"}>
-            <button className={"btn btn-sm btn-primary"} formAction={createEventAction}>
-              Save
-            </button>
+            <FormStatus>
+              <FormStatus.Active>
+                <button className={"btn btn-sm btn-primary"} formAction={createEventAction}>
+                  Save
+                </button>
+              </FormStatus.Active>
+              <FormStatus.Pending>
+                <button className={"btn btn-sm"} disabled>
+                  <i className={"loading loading-sm loading-dots"} />
+                </button>
+              </FormStatus.Pending>
+            </FormStatus>
           </div>
         </form>
       </div>

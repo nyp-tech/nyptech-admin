@@ -1,36 +1,36 @@
-import { setLink } from "@/lib/api/links";
-import { redirect } from "next/navigation";
+"use client";
 
-export default async function Page() {
-  const handleSave = async (data: FormData) => {
-    "use server";
-    const id = data.get("id") as string;
-    const url = data.get("url") as string;
-    const success = await setLink({
-      id,
-      url,
-      description: "", // TODO
-    });
-    if (success) {
-      redirect("/services/go");
-    } else {
-      redirect("/error");
-    }
-  };
+import { saveLinkAction } from "@/app/services/go/actions";
+import FormControl from "@/components/ui/form-control";
+import FormStatus from "@/components/ui/form-status";
 
+export default function Page() {
   return (
     <main className={"grid place-items-center"}>
       <div className={"card bg-base-300"}>
         <form className={"card-body"}>
           <h2 className={"card-title self-center"}>Add Link</h2>
           <div className={"my-2 flex flex-col gap-2"}>
-            <input className={"input"} type={"text"} name={"id"} required={true} placeholder={"ID"} />
-            <input className={"input"} type={"url"} name={"url"} required={true} placeholder={"URL"} />
+            <FormControl label={"ID"}>
+              <input className={"input"} type={"text"} name={"id"} required />
+            </FormControl>
+            <FormControl label={"URL"}>
+              <input className={"input"} type={"url"} name={"url"} required />
+            </FormControl>
           </div>
           <div className={"card-actions justify-end"}>
-            <button className={"btn btn-sm btn-primary"} formAction={handleSave}>
-              Add
-            </button>
+            <FormStatus>
+              <FormStatus.Active>
+                <button className={"btn btn-sm btn-primary"} formAction={saveLinkAction}>
+                  Add
+                </button>
+              </FormStatus.Active>
+              <FormStatus.Pending>
+                <button className={"btn btn-sm"} disabled>
+                  <i className={"loading loading-sm loading-dots"} />
+                </button>
+              </FormStatus.Pending>
+            </FormStatus>
           </div>
         </form>
       </div>
