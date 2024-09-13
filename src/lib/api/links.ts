@@ -1,22 +1,15 @@
-import { TES_GO_KEY } from "@/environment";
-
-const apiKey = TES_GO_KEY;
 const apiUrl = "https://nyptech-api.vercel.app/v1";
 // const apiUrl = "http://localhost:3001/v1";
 
-export type Redirect = {
+export type Link = {
   id: string;
   url: string;
   description?: string;
 };
 
-export function setLink(data: Redirect) {
+export function setLink(data: Link) {
   return fetch(`${apiUrl}/links`, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
     body: JSON.stringify(data),
   })
     .then((res) => res.ok)
@@ -29,15 +22,12 @@ export function setLink(data: Redirect) {
 export function getLink(id: string) {
   return fetch(`${apiUrl}/links?id=${id}`, {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-    },
   })
     .then((res) => {
       if (!res.ok) throw new Error(res.statusText);
       return res.json();
     })
-    .then((data) => data as Redirect)
+    .then((data) => data as Link)
     .catch((err) => {
       console.error(err);
       return null;
@@ -47,15 +37,12 @@ export function getLink(id: string) {
 export function getLinks() {
   return fetch(`${apiUrl}/links`, {
     method: "GET",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-    },
   })
     .then((res) => {
       if (!res.ok) throw new Error(res.statusText);
       return res.json();
     })
-    .then((data) => data as Redirect[])
+    .then((data) => data as Link[])
     .catch((err) => {
       console.error(err);
       return [];
@@ -65,9 +52,6 @@ export function getLinks() {
 export function deleteLink(id: string) {
   return fetch(`${apiUrl}/links?id=${id}`, {
     method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-    },
   })
     .then((res) => res.ok)
     .catch((err) => {

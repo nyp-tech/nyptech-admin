@@ -5,14 +5,14 @@ import NotFound from "@/app/not-found";
 import { deleteLinkAction, saveLinkAction } from "@/app/services/go/actions";
 import FormControl from "@/components/ui/form-control";
 import FormStatus from "@/components/ui/form-status";
-import { getLink, Redirect } from "@/lib/api/links";
+import { getLink, Link } from "@/lib/api/links";
 import { useEffect, useState } from "react";
 
 export default function Page(props: { params: { id: string } }) {
   const id = props.params.id;
 
   const [loading, setLoading] = useState(true);
-  const [link, setLink] = useState<Redirect | undefined>();
+  const [link, setLink] = useState<Link | undefined>();
 
   useEffect(() => {
     getLink(id)
