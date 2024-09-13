@@ -1,4 +1,4 @@
-import EventItem from "@/app/_components/event-item";
+import EventItem from "@/app/events/_components/event-item";
 import { getEvents } from "@/lib/api/events";
 import Link from "next/link";
 

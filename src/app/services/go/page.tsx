@@ -1,4 +1,4 @@
-import LinkItem from "@/app/_components/link-item";
+import LinkItem from "@/app/services/go/_components/link-item";
 import { getLinks } from "@/lib/api/links";
 import Link from "next/link";
 

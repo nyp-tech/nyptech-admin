@@ -1,1 +1,0 @@
-export const TES_GO_KEY = process.env.TES_GO_KEY as string;

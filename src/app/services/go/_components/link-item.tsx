@@ -1,8 +1,9 @@
 "use client";
 
-import { Link } from "@/lib/api/links";
+import { Link as LinkData } from "@/lib/api/links";
+import Link from "next/link";
 
-export default function LinkItem(props: { data: Link }) {
+export default function LinkItem(props: { data: LinkData }) {
   const copyUrl = () => {
     navigator.clipboard.writeText(`https://nyptech-go.vercel.app/${props.data.id}`);
   };

@@ -5,28 +5,33 @@ import NotFound from "@/app/not-found";
 import { deleteLinkAction, saveLinkAction } from "@/app/services/go/actions";
 import FormControl from "@/components/ui/form-control";
 import FormStatus from "@/components/ui/form-status";
-import { getLink, Link } from "@/lib/api/links";
+import { getLink, getLinkStats, Link, LinkStats } from "@/lib/api/links";
 import { useEffect, useState } from "react";
 
 export default function Page(props: { params: { id: string } }) {
   const id = props.params.id;
 
   const [loading, setLoading] = useState(true);
-  const [link, setLink] = useState<Link | undefined>();
+  const [link, setLink] = useState<Link | null>(null);
+  const [linkStats, setLinkStats] = useState<LinkStats | null>(null);
 
   useEffect(() => {
-    getLink(id)
-      .then((link) => {
+    Promise.all([
+      getLink(id).then((link) => {
         if (!link) return;
         setLink(link);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      }),
+      getLinkStats(id).then((stats) => {
+        if (!stats) return;
+        setLinkStats(stats);
+      }),
+    ]).finally(() => {
+      setLoading(false);
+    });
   }, [id]);
 
   if (loading) return <Loading />;
-  if (!link) return <NotFound />;
+  if (!link || !linkStats) return <NotFound />;
 
   return (
     <main className={"grid place-items-center"}>
@@ -39,6 +44,16 @@ export default function Page(props: { params: { id: string } }) {
             </FormControl>
             <FormControl label={"URL"}>
               <input className={"input"} type={"url"} name={"url"} defaultValue={link.url} required />
+            </FormControl>
+            <FormControl label={"Clicks"}>
+              <input
+                className={"input"}
+                type={"number"}
+                name={"clicks"}
+                defaultValue={linkStats.clicks}
+                required
+                readOnly
+              />
             </FormControl>
           </div>
           <div className={"card-actions justify-end"}>

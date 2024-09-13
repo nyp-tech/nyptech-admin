@@ -24,7 +24,7 @@ export function createEvent(data: Omit<Event, "id">) {
     .then((data) => eventSchema.parse(data) as Event)
     .catch((err) => {
       console.error(err);
-      return undefined;
+      return null;
     });
 }
 
@@ -36,7 +36,7 @@ export function getEvent(id: string) {
     .then((data) => eventSchema.parse(data) as Event)
     .catch((err) => {
       console.error(err);
-      return undefined;
+      return null;
     });
 }
 
@@ -61,7 +61,7 @@ export function updateEvent(data: Event) {
     .then((data) => eventSchema.parse(data) as Event)
     .catch((err) => {
       console.error(err);
-      return undefined;
+      return null;
     });
 }
 

@@ -7,6 +7,11 @@ export type Link = {
   description?: string;
 };
 
+export type LinkStats = {
+  id: string;
+  clicks: number;
+};
+
 export function setLink(data: Link) {
   return fetch(`${apiUrl}/links`, {
     method: "POST",
@@ -28,6 +33,21 @@ export function getLink(id: string) {
       return res.json();
     })
     .then((data) => data as Link)
+    .catch((err) => {
+      console.error(err);
+      return null;
+    });
+}
+
+export function getLinkStats(id: string) {
+  return fetch(`${apiUrl}/links/stats?id=${id}`, {
+    method: "GET",
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error(res.statusText);
+      return res.json();
+    })
+    .then((data) => data as LinkStats)
     .catch((err) => {
       console.error(err);
       return null;
